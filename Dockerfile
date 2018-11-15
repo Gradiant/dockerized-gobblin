@@ -21,7 +21,7 @@ ENV GOBBLIN_JOB_CONFIG_DIR /etc/gobblin
 
 
 COPY --from=builder /incubator-gobblin/gobblin-distribution-$VERSION.tar.gz /
-RUN apk add --no-cache bash && mkdir -p /etc/gobblin && tar -xvzf /gobblin-distribution-$VERSION.tar.gz
+RUN apk add --no-cache bash libc6-compat && mkdir -p /etc/gobblin && tar -xvzf /gobblin-distribution-$VERSION.tar.gz
 COPY files/ /gobblin-dist/
 
 ENTRYPOINT ["/gobblin-dist/bin/gobblin-standalone.sh", "start"]
